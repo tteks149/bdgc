@@ -1,0 +1,9 @@
+{% if question_list %} <!-- question_list = render함수로 전달받은 질문목록 -->>
+    <ul>
+    {% for question in question_list %}
+        <li><a href="/pybo/{{ question.id }}/">{{ question.subject }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>질문이 없습니다.</p>
+{% endif %}
