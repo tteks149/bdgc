@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!-- 오류표시 Start -->
+{% if messages %}
+    <div class="alert alert-danger my-3" role="alert">
+    {% for message in messages %}
+        <strong>{{ message.tags }}</strong>
+        <ul><li>{{ message.message }}</li></ul>
+    {% endfor %}
+    </div>
+    {% endif %}
+{% if form.errors %}
+<div class="alert alert-danger" role="alert">
+{% for field in form %}
+    {% if field.errors %}
+    <strong>{{ field.label }}</strong>
+    {{ field.errors }}
+    {% endif %}
+{% endfor %}
+</div>
+{% endif %}
+<!-- 오류표시 End -->
+<div class="container my-3">
+    <table class="table">
+        <thead>
+        <tr class="table-dark">
+            <th>번호</th>
+            <th>매장명</th>
+            <th>주문시각</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% if party_list %}
+        {% for party in party_list %}
+        <tr>
+            <td>{{ party.party_id }}</td>
+            <td>
+                <a href="{% url 'party:party_history_detail' party.share_id %}">{{ party.restaurant_name }}</a>
+            </td>
+            <td>{{ party.order_time }}</td>
+        </tr>
+        {% endfor %}
+        {% else %}
+        <tr>
+            <td colspan="3">주문 기록이 없습니다.</td>
+        </tr>
+        {% endif %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

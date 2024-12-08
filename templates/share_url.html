@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport" 
+      content="width=device-width, initial-scale=1.0, maximum-scale=1"
+    />
+    
+    <meta property="og:title" content="배달가치 - 배달을 공유해 보세요!">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="/static/image/bdgc_smile.png">
+    <meta property="og:description" content="여기를 클릭하여 파티에 참가해보세요!">
+    <link rel="shortcut icon" type="image/x-icon" href="/static/image/bdgc_small_32.png">
+    
+    <title>배달가치</title>
+    <link rel="stylesheet" href="../../static/css/reset.css" />
+    <link rel="stylesheet" href="../../static/css/common_style.css" />
+    <link rel="stylesheet" href="../../static/css/share_url_style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=ec6zgzjygt"></script>
+    <script
+      defer
+      type="text/javascript"
+      src="../../static/js/share_url.js"
+    ></script>
+    
+  </head>
+  <body>
+    <header>
+      <div class="header-area">
+        <div class="info-box">
+          <img class="info-image" src="../../static/image/info_icon.png" />
+        </div>
+        <div class="logo-box">
+          <img class="logo-image" src="../../static/image/bdgc_logo.png" />
+        </div>
+        <div class="profile-box">
+          <img class="profile-image" src="../../static/image/user_icon.png" />
+        </div>
+      </div>
+    </header>
+
+      <div class="party-box">
+        <div class="party-box-header">
+          <span class="party-store-name">{{party.restaurant_name}}</span>
+          <div class="party-box-header-small">
+            <span class="party-location-small">{{location_name_small}}</span>
+            <span class="party-left-time">파티 종료까지 {{left_time}}분</span>
+          </div>
+        </div>
+        <div class="party-content-box">
+          <div class="party-condition">
+            <span class="name-of-party-condition">최소 참가 금액</span>
+            <span class="party-condition">{{participation_fee}}</span>
+            <span>원</span>
+          </div>
+          <div class="party-condition">
+            <span class="name-of-party-condition">인당 배달비</span>
+            <span class="party-condition">{{party.delivery_cost_per_person}}</span>
+            <span>원</span>
+          </div>
+          <div class="party-condition">
+            <span class="name-of-party-condition">참가 인원</span>
+            <span class="party-people-number">{{party.headcount}}</span>
+            <span class="party-people-number">/</span>
+            <span class="party-people-number">{{party.required_people_number}}</span>
+          </div>
+          <div class="party-condition">
+            <span class="name-of-party-condition">주문예상시간</span>
+            <span class="party-condition">{{order_time}}</span>
+          </div>
+        </div>
+        <div class="party-button-area">
+          <button onclick="check_location({{location_x}} , {{location_y}})">모집</br>장소</button>
+          <button onclick="location.href='{{join_url}}'">참가</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="location-check-modal">
+      <div class="map-content-box">
+        <div id="map">
+          
+        </div>
+
+        <button type="button" id="modal-close-button" onclick="check_location_close()">닫기</button>
+        
+      </div>
+      <div class="modal-map-layer">
+      </div>
+    </div>
+
+  </body>
+</html>
